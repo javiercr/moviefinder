@@ -7,6 +7,9 @@
       Find a good movie for tonight!
       %br
     %a.learn_more{:data => {:toggle => "modal"}, :href => "#learnMore"} Learn More
+    :plain
+      <a href="https://twitter.com/share" class="twitter-share-button" data-text="MovieFinder gives you good movies to download fast!" data-via="diacode" data-hashtags="moviefinder">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   - @movies.each_slice(4) do |four_movies|
     .row
       - four_movies.each do |movie|
@@ -14,10 +17,11 @@
           .movie.well
             = link_to image_tag(movie.poster, :width => 240), movie.imdb_link, :target => "_blank"
             %h3
-              = movie.title
+              :plain
+                #{movie.title.strip}&nbsp;<span class="label label-inverse">#{movie.imdb_year}</span>
             %h4
-              %span.badge{:rel => "tooltip", :title => "IMDB Rating"}= movie.imdb_rating
-              %span.label.label-inverse= movie.imdb_year
+              %span.badge.badge-info{:rel => "tooltip", :title => "IMDB Rating"}= movie.imdb_rating
+             
             .download.btn-group
               %a.btn.btn-small.dropdown-toggle{:data => {:toggle => "dropdown"}, :href => "#"} 
                 = raw("<i class='icon-download'></i> Download")
@@ -31,6 +35,10 @@
             .subtitles
               = link_to raw("<i class='icon-font'></i>"), "http://subscene.com/filmsearch.aspx?exact=on&q=#{movie.title.strip!}", :target => "_blank", :rel => "tooltip", :title => "Subtitles", :class => "btn btn-small"
             
+
+  #footer.row
+    .span12
+      %p We thought #{@movies.count} movies would be enough. Do you think we should give you more? #{link_to "Let us know!", "http://twitter.com/diacode", :target => "_blank"} 
 
 #learnMore.modal.fade
   .modal-header
@@ -60,6 +68,8 @@
     
     %p
       Movies are shown sorted by their IMDB rating. We're working on some filters to allow you to sort them as you please.
+    %p
+      We automatically update MovieFinder every 6 hours, so you'll always get fresh results.
     %h5 Any suggestions?
     %p 
       We're looking forward to hear from you. You can reach us on #{link_to "Twitter", "http://twitter.com/diacode", :target => "_blank"}.

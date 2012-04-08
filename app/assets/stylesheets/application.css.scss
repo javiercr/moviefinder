@@ -25,23 +25,27 @@ h1 {
 }
 
 .phrase {
+  margin-top: 30px;
+  margin-bottom: 10px;
   color: white;
   font-size: 20px;
   float: right;
   font-family: 'Permanent Marker', cursive;
-  line-height: 100px;
   text-align: right;
+  margin-right: -5px;
 }
 
 a.learn_more {
-  margin-right: 5px;
-  margin-top: -35px;
+  font-size: 16px;
   color: #ABDB25;
   &:visited {color: #ABDB25;}
   float: right;
     font-family: 'Permanent Marker', cursive;
 }
 
+.twitter-share-button {
+  float: right;
+}
 
 .movie {
   padding-bottom: 20px;
@@ -51,6 +55,11 @@ a.learn_more {
     max-width: 240px; 
     color: white;
     padding: 5px 0;
+    .label {
+      position: relative;
+      bottom: 2px;
+      left: 0px;
+    }
   }
   
   &.well { 
@@ -67,11 +76,6 @@ a.learn_more {
 h4 {
   float: left;
   line-height: 25px;
-  .label {
-    position: relative;
-    bottom: 2px;
-    left: 5px;
-  }
 }
 
 .subtitles {
@@ -93,5 +97,20 @@ h4 {
 .modal-footer {
   .diacode {
     float: left;
+  }
+}
+
+
+#footer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  p {
+    font-family: 'Permanent Marker', cursive;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    a, a:visited {
+      color: #ABDB25;
+    }
   }
 }
