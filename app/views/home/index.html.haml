@@ -1,0 +1,72 @@
+.container
+  .row
+    .span6
+      %h1
+        MovieFinder
+    .span6.phrase
+      Find a good movie for tonight!
+      %br
+    %a.learn_more{:data => {:toggle => "modal"}, :href => "#learnMore"} Learn More
+  - @movies.each_slice(4) do |four_movies|
+    .row
+      - four_movies.each do |movie|
+        .span3
+          .movie.well
+            = link_to image_tag(movie.poster, :width => 240), movie.imdb_link, :target => "_blank"
+            %h3
+              = movie.title
+            %h4
+              %span.badge{:rel => "tooltip", :title => "IMDB Rating"}= movie.imdb_rating
+              %span.label.label-inverse= movie.imdb_year
+            .download.btn-group
+              %a.btn.btn-small.dropdown-toggle{:data => {:toggle => "dropdown"}, :href => "#"} 
+                = raw("<i class='icon-download'></i> Download")
+                %span.caret
+              %ul.dropdown-menu
+                - movie.torrents.each do |torrent|
+                  %li{:rel => "tooltip", :title => "#{torrent.name} <br/>(#{number_to_percentage((torrent.seeds_ratio * 100), :precision => 2)} seeds)"}
+                    = link_to torrent.quality, torrent.file
+            
+            
+            .subtitles
+              = link_to raw("<i class='icon-font'></i>"), "http://subscene.com/filmsearch.aspx?exact=on&q=#{movie.title.strip!}", :target => "_blank", :rel => "tooltip", :title => "Subtitles", :class => "btn btn-small"
+            
+
+#learnMore.modal.fade
+  .modal-header
+    %a.close{:data => {:dismiss => "modal"}} x
+    %h3 About MovieFinder
+  
+  .modal-body
+    %p
+      MovieFinder gives you some ideas about what to watch tonight.
+    
+    %h5 How does MovieFinder work?
+    %p
+      We find the most 
+      seeded movie torrents and with the best seeds/peers ratio possible,
+      so your downloads will be as fast as hell. Then we filter using
+      = link_to "IMDB", "http://imdb.com", :target => "_blank" 
+      ratings,
+      and finally we ensure the 
+      quality of the rip is at least DVD Rip.
+    %p
+      In other words, these are the requirements a movie / torrent must be met:
+    %ul
+      %li At least 7 points on IMDB Rating
+      %li At least DVD Rip quality
+      %li At least 1000 seeds
+      %li At least 50% seeds (seeds/peers ratio > 0.5)
+    
+    %p
+      Movies are shown sorted by their IMDB rating. We're working on some filters to allow you to sort them as you please.
+    %h5 Any suggestions?
+    %p 
+      We're looking forward to hear from you. You can reach us on #{link_to "Twitter", "http://twitter.com/diacode", :target => "_blank"}.
+  
+    %h5 Who did make MovieFinder?
+    %p 
+      MovideFinder was handcrafted with love by #{link_to "Diacode", "http://diacode.com", :target => "_blank"}.
+  .modal-footer
+    = link_to image_tag("diacode.png"), "http://diacode.com", :target => "_blank", :class => "diacode"
+    %a.btn{:href => "#"} Close

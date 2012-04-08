@@ -1,0 +1,97 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+*/
+
+body {
+  background-image: url("bg.png");
+}
+
+h1 {
+  line-height: 100px;
+  font-family: 'Bree Serif', serif;
+  font-size: 40px;
+  font-weight: 200;
+  color: #ABDB25;
+}
+
+.phrase {
+  color: white;
+  font-size: 20px;
+  float: right;
+  font-family: 'Permanent Marker', cursive;
+  line-height: 100px;
+  text-align: right;
+}
+
+a.learn_more {
+  margin-right: 5px;
+  margin-top: -35px;
+  color: #ABDB25;
+  &:visited {color: #ABDB25;}
+  float: right;
+    font-family: 'Permanent Marker', cursive;
+}
+
+
+.movie {
+  padding-bottom: 20px;
+  float: left;
+  img { max-width: 100%;}
+  h3 { 
+    max-width: 240px; 
+    color: white;
+    padding: 5px 0;
+  }
+  
+  &.well { 
+    background-color: rgba(100, 100, 100, 0.5);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+  }
+  
+  .btn {
+    padding: 4px;
+  }
+  
+}
+
+h4 {
+  float: left;
+  line-height: 25px;
+  .label {
+    position: relative;
+    bottom: 2px;
+    left: 5px;
+  }
+}
+
+.subtitles {
+  float: right;
+  margin-right: 5px;
+}
+.download {
+  float: right;
+  .dropdown-menu {
+    min-width: 100px;
+  }
+}
+
+
+#learnMore {
+  display: none;
+}
+
+.modal-footer {
+  .diacode {
+    float: left;
+  }
+}
