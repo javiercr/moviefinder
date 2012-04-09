@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
   has_many :torrents
+  has_and_belongs_to_many :genres
   has_attached_file :poster
     
   def too_bad?

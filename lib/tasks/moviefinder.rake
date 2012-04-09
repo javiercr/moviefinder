@@ -56,7 +56,7 @@ namespace :moviefinder  do
           next if imdb_id_node.nil?
           imdb_id = imdb_id_node.inner_text
           
-          
+         
           # Check if we already have that movie in the DB
           movie = Movie.find_by_imdb_id(imdb_id)
 
@@ -89,6 +89,14 @@ namespace :moviefinder  do
             next if img_node.nil?
             poster_url = img_node.attribute('src').to_s
             movie.fetch_poster(poster_url, @ua)
+        
+            # Genres
+            page_kat.css('span[itemprop=genre]').each do |genre_node|
+              name = genre_node.inner_text.strip
+              genre = Genre.find_by_name(name)
+              genre = Genre.new(:name => name) if genre.nil?
+              movie.genres << genre
+            end
             
             @movies << movie
           end

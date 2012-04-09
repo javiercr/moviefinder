@@ -15,7 +15,12 @@
       - four_movies.each do |movie|
         .span3
           .movie.well
-            = link_to image_tag(movie.poster, :width => 240), movie.imdb_link, :target => "_blank"
+            = image_tag(movie.poster, :width => 240)
+            .over
+              - movie.genres.each do |genre|
+                %span.label= genre
+                %br
+              = link_to "Go to IMDB", movie.imdb_link, :class => "btn btn-mini btn-info", :target => "_blank"
             %h3
               :plain
                 #{movie.title.strip}&nbsp;<span class="label label-inverse">#{movie.imdb_year}</span>

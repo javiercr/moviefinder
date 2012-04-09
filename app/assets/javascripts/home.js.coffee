@@ -10,3 +10,9 @@ $ ->
   $('li[rel=tooltip]').tooltip({
     placement: 'left'
   })
+
+  $('.movie').hover(->
+      $('.over', this).stop(true,true).fadeIn('fast')
+    ,->
+      $('.over', this).stop(true,true).fadeOut('fast')
+    )
