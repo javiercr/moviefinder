@@ -11,15 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408164113) do
+ActiveRecord::Schema.define(:version => 20120409102452) do
 
   create_table "movies", :force => true do |t|
-    t.string  "title"
-    t.integer "imdb_id"
-    t.decimal "imdb_rating"
-    t.string  "imdb_link"
-    t.integer "imdb_year"
-    t.string  "poster"
+    t.string   "title"
+    t.integer  "imdb_id"
+    t.decimal  "imdb_rating"
+    t.string   "imdb_link"
+    t.integer  "imdb_year"
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
   end
 
   create_table "torrents", :force => true do |t|

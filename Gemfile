@@ -13,3 +13,4 @@ gem "haml", ">= 3.1.4"
 gem "haml-rails", ">= 0.3.4", :group => :development
 gem 'nokogiri'
 gem 'capistrano'
+gem 'paperclip'

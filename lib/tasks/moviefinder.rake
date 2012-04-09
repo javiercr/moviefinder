@@ -87,7 +87,8 @@ namespace :moviefinder  do
             # Poster
             img_node = page_imdb.at_css('img[itemprop="image"]')
             next if img_node.nil?
-            movie.poster = img_node.attribute('src').to_s
+            poster_url = img_node.attribute('src').to_s
+            movie.fetch_poster(poster_url, @ua)
             
             @movies << movie
           end
