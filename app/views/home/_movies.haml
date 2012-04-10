@@ -1,0 +1,31 @@
+#movies
+  - @movies.each_slice(4) do |four_movies|
+    .row
+      - four_movies.each do |movie|
+        .span3
+          .movie.well
+            = image_tag(movie.poster, :width => 240)
+            .over
+              - movie.genres.each do |genre|
+                %span.label= genre
+                %br
+              = link_to "Go to IMDB", movie.imdb_link, :class => "btn btn-mini btn-info", :target => "_blank"
+            %h3
+              :plain
+                #{movie.title.strip}&nbsp;<span class="label label-inverse">#{movie.imdb_year}</span>
+            %h4
+              %span.badge.badge-info{:rel => "tooltip", :title => "IMDB Rating"}= movie.imdb_rating
+           
+            .download.btn-group
+              %a.btn.btn-small.dropdown-toggle{:data => {:toggle => "dropdown"}, :href => "#"} 
+                = raw("<i class='icon-download'></i> Download")
+                %span.caret
+              %ul.dropdown-menu
+                - movie.torrents.each do |torrent|
+                  %li{:rel => "tooltip", :title => "#{torrent.name} <br/>(#{number_to_percentage((torrent.seeds_ratio * 100), :precision => 2)} seeds)"}
+                    = link_to torrent.quality, torrent.file
+          
+          
+            .subtitles
+              = link_to raw("<i class='icon-font'></i>"), "http://subscene.com/filmsearch.aspx?exact=on&q=#{movie.title.strip!}", :target => "_blank", :rel => "tooltip", :title => "Subtitles", :class => "btn btn-small"
+          

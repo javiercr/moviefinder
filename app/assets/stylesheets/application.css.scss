@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_tree .
+ *= require chosen
  *= require_self
 */
 
@@ -141,4 +142,8 @@ h4 {
       color: #ABDB25;
     }
   }
+}
+
+#filters {
+  margin-bottom: 10px;
 }
